@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { getQuestions } from '../services/questionService';
 
@@ -8,7 +9,7 @@ interface GameScreenProps {
   difficulty: Difficulty;
   subject: Subject;
   questionCount: number;
-  onLevelComplete: () => void;
+  onLevelComplete: (correctAnswers: number, subject: Subject, difficulty: Difficulty) => void;
   onBackToMenu: () => void;
   onAddPoints: (points: number) => void;
 }
@@ -45,7 +46,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
   
   const loadNextProblem = () => {
      if (currentQuestionIndex + 1 >= questionPool.length) {
-        onLevelComplete();
+        onLevelComplete(correctAnswers, subject, difficulty);
         return;
     }
     setIsAnswered(false);
@@ -88,7 +89,12 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
   };
 
 
-  const subjectTitle = subject === 'mathematics' ? 'Matemática' : 'Português';
+  let subjectTitle = '';
+  switch (subject) {
+      case 'mathematics': subjectTitle = 'Matemática'; break;
+      case 'portuguese': subjectTitle = 'Português'; break;
+      case 'english': subjectTitle = 'Inglês'; break;
+  }
 
   const renderContent = () => {
     if (isLoading) {

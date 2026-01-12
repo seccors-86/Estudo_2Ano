@@ -1,3 +1,4 @@
+
 import type { Difficulty } from '../types';
 
 export interface Question {
@@ -452,11 +453,113 @@ export const QUESTION_BANK: QuestionBank = {
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "O gato de pelo branco dorme no sofá, enquanto o cachorro preto brinca no quintal." Onde está o cachorro?', options: ['No sofá', 'Dormindo', 'No quintal', 'Com o gato'], answer: 'No quintal' },
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "Carlos acordou cedo, tomou café e foi para a escola. Ele só voltou para casa no fim da tarde." O que Carlos fez pela manhã?', options: ['Voltou para casa', 'Ficou dormindo', 'Foi para a escola', 'Brincou'], answer: 'Foi para a escola' },
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "Havia três frutas na cesta: uma maçã, uma banana e uma laranja. Comi a maçã." Quantas frutas sobraram?', options: [1, 2, 3, 0], answer: 2 },
-    // FIX: Combined the problem string into a single line to fix a syntax error caused by a newline character.
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "Lucas é mais alto que Marcos, mas é mais baixo que André." Quem é o mais alto de todos?', options: ['Lucas', 'Marcos', 'André', 'São iguais'], answer: 'André' },
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "A festa será no sábado, um dia depois da sexta-feira." Que dia é a festa?', options: ['Sexta-feira', 'Domingo', 'Sábado', 'Quinta-feira'], answer: 'Sábado' },
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "O filme começa às 3 horas. Cheguei ao cinema às 2 horas." Eu cheguei adiantado ou atrasado?', options: ['Atrasado', 'Adiantado', 'Na hora certa', 'Não fui ao cinema'], answer: 'Adiantado' },
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "Todos os meus amigos gostam de futebol, exceto a Laura, que prefere vôlei." Quem gosta de vôlei?', options: ['Todos', 'Meus amigos', 'Laura', 'Ninguém'], answer: 'Laura' },
     { topic: 'interpretacao_texto', difficulty: 'Desafiador', problem: 'Leia: "A tartaruga é um réptil. O cachorro é um mamífero. A galinha é uma ave." O que a tartaruga é?', options: ['Mamífero', 'Ave', 'Réptil', 'Peixe'], answer: 'Réptil' },
+  ],
+  english: [
+    // ===================================
+    // Basic Vocabulary (basic_vocabulary)
+    // ===================================
+    // Fichinha
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'How do you say "Sim" in English?', options: ['No', 'Yes', 'Please', 'Thanks'], answer: 'Yes' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'How do you say "Não" in English?', options: ['No', 'Yes', 'Hi', 'Bye'], answer: 'No' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'What is "Hello" in Portuguese?', options: ['Tchau', 'Olá', 'Sim', 'Obrigado'], answer: 'Olá' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'What is "Goodbye" in Portuguese?', options: ['Oi', 'Adeus', 'Por favor', 'De nada'], answer: 'Adeus' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'How do you say "Amigo" in English?', options: ['Enemy', 'Friend', 'Boy', 'Girl'], answer: 'Friend' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'How do you say "Casa" in English?', options: ['Car', 'House', 'Ball', 'Dog'], answer: 'House' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'What is "School" in Portuguese?', options: ['Escola', 'Casa', 'Rua', 'Parque'], answer: 'Escola' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'How do you say "Professor" in English?', options: ['Student', 'Teacher', 'Doctor', 'Nurse'], answer: 'Teacher' },
+    { topic: 'basic_vocabulary', difficulty: 'Fichinha', problem: 'What is "Book" in Portuguese?', options: ['Mesa', 'Livro', 'Lápis', 'Cadeira'], answer: 'Livro' },
+    // Eu me Viro
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'How do you say "Bom dia" in English?', options: ['Good night', 'Good morning', 'Good afternoon', 'Good evening'], answer: 'Good morning' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'How do you say "Boa noite" (when arriving)?', options: ['Good morning', 'Good evening', 'Good bye', 'Good afternoon'], answer: 'Good evening' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'What is "Water" in Portuguese?', options: ['Leite', 'Água', 'Suco', 'Refrigerante'], answer: 'Água' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'What is "Food" in Portuguese?', options: ['Bebida', 'Comida', 'Brinquedo', 'Roupa'], answer: 'Comida' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'How do you say "Por favor" in English?', options: ['Thanks', 'Please', 'Sorry', 'Excuse me'], answer: 'Please' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'How do you say "Obrigado" in English?', options: ['Please', 'Thank you', 'Welcome', 'Sorry'], answer: 'Thank you' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'What is "Happy" in Portuguese?', options: ['Triste', 'Feliz', 'Bravo', 'Cansado'], answer: 'Feliz' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'What is "Sad" in Portuguese?', options: ['Feliz', 'Triste', 'Rápido', 'Lento'], answer: 'Triste' },
+    { topic: 'basic_vocabulary', difficulty: 'Eu me Viro', problem: 'How do you say "Família" in English?', options: ['Friends', 'Family', 'School', 'Work'], answer: 'Family' },
+    // Desafiador
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'How do you say "Ontem" in English?', options: ['Today', 'Tomorrow', 'Yesterday', 'Now'], answer: 'Yesterday' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'How do you say "Amanhã" in English?', options: ['Today', 'Tomorrow', 'Yesterday', 'Week'], answer: 'Tomorrow' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'What is "Breakfast" in Portuguese?', options: ['Almoço', 'Jantar', 'Café da manhã', 'Lanche'], answer: 'Café da manhã' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'What is "Lunch" in Portuguese?', options: ['Café da manhã', 'Almoço', 'Jantar', 'Lanche'], answer: 'Almoço' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'What is "Dinner" in Portuguese?', options: ['Café', 'Almoço', 'Jantar', 'Sobremesa'], answer: 'Jantar' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'How do you say "Desculpe" in English?', options: ['Please', 'Sorry', 'Thanks', 'Welcome'], answer: 'Sorry' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'How do you say "Com licença" in English?', options: ['Excuse me', 'Sorry', 'Please', 'Hello'], answer: 'Excuse me' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'What is "Window" in Portuguese?', options: ['Porta', 'Janela', 'Parede', 'Chão'], answer: 'Janela' },
+    { topic: 'basic_vocabulary', difficulty: 'Desafiador', problem: 'What is "Door" in Portuguese?', options: ['Janela', 'Porta', 'Mesa', 'Cadeira'], answer: 'Porta' },
+
+    // ===================================
+    // Colors and Numbers (colors_numbers)
+    // ===================================
+    // Fichinha
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What color is "Red"?', options: ['Azul', 'Vermelho', 'Verde', 'Amarelo'], answer: 'Vermelho' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What color is "Blue"?', options: ['Vermelho', 'Azul', 'Preto', 'Branco'], answer: 'Azul' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What color is "Yellow"?', options: ['Verde', 'Amarelo', 'Roxo', 'Rosa'], answer: 'Amarelo' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What is number "One"?', options: ['1', '2', '3', '4'], answer: '1' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What is number "Two"?', options: ['1', '2', '3', '5'], answer: '2' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What is number "Three"?', options: ['2', '3', '4', '6'], answer: '3' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What is number "Four"?', options: ['3', '4', '5', '8'], answer: '4' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What is number "Five"?', options: ['4', '5', '6', '10'], answer: '5' },
+    { topic: 'colors_numbers', difficulty: 'Fichinha', problem: 'What color is "Green"?', options: ['Azul', 'Verde', 'Amarelo', 'Preto'], answer: 'Verde' },
+    // Eu me Viro
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What color is "Black"?', options: ['Branco', 'Preto', 'Cinza', 'Marrom'], answer: 'Preto' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What color is "White"?', options: ['Preto', 'Branco', 'Rosa', 'Roxo'], answer: 'Branco' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What color is "Pink"?', options: ['Roxo', 'Rosa', 'Vermelho', 'Laranja'], answer: 'Rosa' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What color is "Orange"?', options: ['Vermelho', 'Amarelo', 'Laranja', 'Marrom'], answer: 'Laranja' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What is number "Ten"?', options: ['5', '8', '10', '12'], answer: '10' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What is number "Twelve"?', options: ['10', '11', '12', '20'], answer: '12' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What is number "Seven"?', options: ['6', '7', '8', '9'], answer: '7' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What is number "Eight"?', options: ['7', '8', '9', '10'], answer: '8' },
+    { topic: 'colors_numbers', difficulty: 'Eu me Viro', problem: 'What is number "Nine"?', options: ['8', '9', '10', '19'], answer: '9' },
+    // Desafiador
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What color is "Purple"?', options: ['Rosa', 'Roxo', 'Azul', 'Verde'], answer: 'Roxo' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What color is "Gray"?', options: ['Marrom', 'Cinza', 'Preto', 'Branco'], answer: 'Cinza' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What color is "Brown"?', options: ['Preto', 'Cinza', 'Marrom', 'Vermelho'], answer: 'Marrom' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What is number "Twenty"?', options: ['12', '20', '30', '22'], answer: '20' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What is number "Thirty"?', options: ['13', '30', '33', '40'], answer: '30' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What is number "Fifty"?', options: ['15', '50', '55', '5'], answer: '50' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What is number "One Hundred"?', options: ['10', '100', '1000', '101'], answer: '100' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What is number "Eleven"?', options: ['10', '11', '12', '21'], answer: '11' },
+    { topic: 'colors_numbers', difficulty: 'Desafiador', problem: 'What is number "Fifteen"?', options: ['5', '15', '50', '55'], answer: '15' },
+
+    // ===================================
+    // Animals and Nature (animals_nature)
+    // ===================================
+    // Fichinha
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Dog"?', options: ['Gato', 'Cachorro', 'Pássaro', 'Peixe'], answer: 'Cachorro' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Cat"?', options: ['Cachorro', 'Gato', 'Rato', 'Leão'], answer: 'Gato' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Sun"?', options: ['Lua', 'Sol', 'Estrela', 'Céu'], answer: 'Sol' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Moon"?', options: ['Sol', 'Lua', 'Nuvem', 'Terra'], answer: 'Lua' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Fish"?', options: ['Gato', 'Peixe', 'Pássaro', 'Sapo'], answer: 'Peixe' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Bird"?', options: ['Peixe', 'Pássaro', 'Borboleta', 'Abelha'], answer: 'Pássaro' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Tree"?', options: ['Flor', 'Árvore', 'Grama', 'Folha'], answer: 'Árvore' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Flower"?', options: ['Árvore', 'Flor', 'Jardim', 'Fruta'], answer: 'Flor' },
+    { topic: 'animals_nature', difficulty: 'Fichinha', problem: 'What is "Lion"?', options: ['Tigre', 'Leão', 'Urso', 'Gato'], answer: 'Leão' },
+    // Eu me Viro
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Horse"?', options: ['Vaca', 'Cavalo', 'Porco', 'Ovelha'], answer: 'Cavalo' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Cow"?', options: ['Cavalo', 'Vaca', 'Cabra', 'Porco'], answer: 'Vaca' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Pig"?', options: ['Ovelha', 'Porco', 'Cavalo', 'Galinha'], answer: 'Porco' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Chicken"?', options: ['Pato', 'Galinha', 'Pássaro', 'Peru'], answer: 'Galinha' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Rain"?', options: ['Sol', 'Chuva', 'Vento', 'Neve'], answer: 'Chuva' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Sky"?', options: ['Mar', 'Céu', 'Terra', 'Nuvem'], answer: 'Céu' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Sea"?', options: ['Céu', 'Mar', 'Rio', 'Lago'], answer: 'Mar' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Beach"?', options: ['Parque', 'Praia', 'Montanha', 'Floresta'], answer: 'Praia' },
+    { topic: 'animals_nature', difficulty: 'Eu me Viro', problem: 'What is "Monkey"?', options: ['Leão', 'Macaco', 'Urso', 'Elefante'], answer: 'Macaco' },
+    // Desafiador
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Elephant"?', options: ['Hipopótamo', 'Elefante', 'Girafa', 'Rinoceronte'], answer: 'Elefante' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Giraffe"?', options: ['Elefante', 'Girafa', 'Zebra', 'Leão'], answer: 'Girafa' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Butterfly"?', options: ['Abelha', 'Borboleta', 'Mosca', 'Formiga'], answer: 'Borboleta' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Snake"?', options: ['Lagarto', 'Cobra', 'Sapo', 'Tartaruga'], answer: 'Cobra' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Shark"?', options: ['Baleia', 'Tubarão', 'Golfinho', 'Polvo'], answer: 'Tubarão' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Whale"?', options: ['Tubarão', 'Baleia', 'Peixe', 'Foca'], answer: 'Baleia' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Wind"?', options: ['Chuva', 'Vento', 'Neve', 'Sol'], answer: 'Vento' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Snow"?', options: ['Chuva', 'Neve', 'Gelo', 'Frio'], answer: 'Neve' },
+    { topic: 'animals_nature', difficulty: 'Desafiador', problem: 'What is "Forest"?', options: ['Jardim', 'Floresta', 'Parque', 'Cidade'], answer: 'Floresta' },
   ]
 };

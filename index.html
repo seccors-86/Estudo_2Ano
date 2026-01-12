@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-top-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Campeões da 122</title>
+    <title>Jogos dos Campeões</title>
     <script src="https://cdn.tailwindcss.com"></script>
   <script type="importmap">
 {
@@ -15,6 +16,83 @@
   }
 }
 </script>
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 20px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    .animate-fade-in-up {
+        animation: fadeInUp 0.5s ease-in-out;
+    }
+    
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
+    .animate-shake {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    }
+
+    @keyframes wiggle {
+        0%, 100% { transform: rotate(45deg); }
+        50% { transform: rotate(65deg); }
+    }
+    .animate-wiggle {
+        animation: wiggle 0.5s ease-in-out infinite;
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    .animate-zoom-in {
+        animation: zoomIn 0.4s ease-out;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(-50px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+    }
+
+    .raindrop {
+        position: absolute;
+        top: -50px;
+        width: 1px;
+        height: 50px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(173, 216, 230, 0.5));
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+</style>
 </head>
   <body class="bg-blue-50">
     <div id="root"></div>

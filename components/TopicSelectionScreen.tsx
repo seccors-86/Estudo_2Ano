@@ -1,27 +1,10 @@
-import React, { useState, useMemo } from 'react';
+
+import React, { useState, useMemo, useEffect } from 'react';
 import Character from './Character';
 import StoreIcon from './icons/StoreIcon';
+import Island from './Island';
+import { TOPIC_DATA } from '../data/topics';
 import type { Topic, Subject, Difficulty, CharacterType } from '../types';
-
-const TOPIC_DATA: { [key in Subject]: Topic[] } = {
-  mathematics: [
-    { id: 'solidos_geometricos', label: 'Sólidos Geométricos' },
-    { id: 'adicao_subtracao', label: 'Adição e Subtração' },
-    { id: 'multiplicacao', label: 'Noções de Multiplicação' },
-    { id: 'divisao', label: 'Noções de Divisão' },
-  ],
-  portuguese: [
-    { id: 'sinonimos_antonimos', label: 'Sinônimos e Antônimos' },
-    { id: 'substantivos', label: 'Substantivos Comuns/Próprios' },
-    { id: 'genero', label: 'Gênero Masculino/Feminino' },
-    { id: 'ortografia_r_s', label: 'Uso do R/RR e S/SS' },
-    { id: 'fabula', label: 'Gênero Textual Fábula' },
-    { id: 'singular_plural', label: 'Singular e Plural' },
-    { id: 'aumentativo_diminutivo', label: 'Aumentativo e Diminutivo' },
-    { id: 'uso_m_p_b', label: 'Uso do M antes de P e B' },
-    { id: 'interpretacao_texto', label: 'Leitura e Interpretação' },
-  ]
-};
 
 const DIFFICULTIES: Difficulty[] = ['Fichinha', 'Eu me Viro', 'Desafiador'];
 const QUESTION_COUNTS = [5, 10, 15];
@@ -30,15 +13,19 @@ const QUESTION_COUNTS = [5, 10, 15];
 interface TopicSelectionScreenProps {
   characterType: CharacterType;
   purchasedUpgrades: number[];
+  activeUpgrades: number[];
+  activeTattoo: string | null;
   subject: Subject;
   points: number;
+  hasMiniPet?: boolean; // deprecated
+  miniPetCount?: number;
   onStartGame: (topics: string[], difficulty: Difficulty, questionCount: number) => void;
   onBack: () => void;
   onNavigateToStore: () => void;
 }
 
 const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
-  characterType, purchasedUpgrades, subject, points, onStartGame, onBack, onNavigateToStore
+  characterType, purchasedUpgrades, activeUpgrades, activeTattoo, subject, points, hasMiniPet, miniPetCount, onStartGame, onBack, onNavigateToStore
 }) => {
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null);
@@ -90,14 +77,21 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
 
       <h1 className="text-4xl md:text-5xl font-bold text-teal-600 mb-2">{subjectTitle}</h1>
       <div className="mb-4">
-        <Character type={characterType} purchasedUpgrades={purchasedUpgrades} />
+         <div className="relative flex justify-center items-center h-48 scale-75 -my-4">
+            <div className="absolute bottom-0">
+                <Island purchasedUpgrades={purchasedUpgrades} activeUpgrades={activeUpgrades} />
+            </div>
+            <div className="absolute bottom-8">
+                <Character type={characterType} activeUpgrades={activeUpgrades} activeTattoo={activeTattoo} hasMiniPet={hasMiniPet} miniPetCount={miniPetCount} />
+            </div>
+         </div>
          <div className="inline-block bg-gray-200 text-gray-800 text-lg font-bold px-4 py-1 rounded-full">
-            Pontos: {points}
+            Pontos: {Math.floor(points)}
          </div>
       </div>
 
       {/* Topic Selection */}
-      <div className="mb-6 text-left">
+      <div className="mt-8 text-left">
           <div className="flex justify-between items-center mb-3">
             <h2 className="text-2xl font-semibold text-gray-700">1. Escolha os Tópicos:</h2>
             <button onClick={handleSelectAll} className="text-sm font-semibold text-teal-600 hover:text-teal-800">
@@ -118,7 +112,7 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
       </div>
 
       {/* Difficulty Selection */}
-      <div className="mb-6 text-left">
+      <div className="mt-6 text-left">
           <h2 className="text-2xl font-semibold text-gray-700 mb-3">2. Escolha a Dificuldade:</h2>
           <div className="grid grid-cols-3 gap-4">
               {DIFFICULTIES.map(diff => (
@@ -134,7 +128,7 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
       </div>
 
       {/* Question Count Selection */}
-      <div className="mb-8 text-left">
+      <div className="mt-6 text-left mb-8">
           <h2 className="text-2xl font-semibold text-gray-700 mb-3">3. Quantidade de Questões:</h2>
           <div className="grid grid-cols-3 gap-4">
               {QUESTION_COUNTS.map(count => (

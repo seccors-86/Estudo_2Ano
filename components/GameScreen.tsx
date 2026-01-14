@@ -24,11 +24,19 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
   const [isAnswered, setIsAnswered] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
 
-  const pointsPerAnswer = {
-    'Fichinha': 10,
-    'Eu me Viro': 20,
-    'Desafiador': 35,
-  }[difficulty];
+  // Scoring Logic based on User Request
+  // Difficult: +20 for Correct, -5 for Wrong.
+  // 5 Questions Correct = 100 pts.
+  // 3 Questions Correct (2 Wrong) = (3*20) - (2*5) = 60 - 10 = 50 pts.
+  const getPointsDelta = (isCorrect: boolean) => {
+      if (difficulty === 'Desafiador') {
+          return isCorrect ? 20 : -5;
+      } else if (difficulty === 'Eu me Viro') {
+          return isCorrect ? 15 : 0;
+      } else {
+          return isCorrect ? 10 : 0;
+      }
+  };
 
   useEffect(() => {
     const loadQuestions = () => {
@@ -62,8 +70,11 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
 
     const isCorrect = option.toString().toLowerCase() === problem.answer.toString().toLowerCase();
 
+    // Apply points immediately (Positive or Negative)
+    const pointsToAdd = getPointsDelta(isCorrect);
+    onAddPoints(pointsToAdd);
+
     if (isCorrect) {
-      onAddPoints(pointsPerAnswer);
       setCorrectAnswers(prev => prev + 1);
     }
     
@@ -91,20 +102,26 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
 
   let subjectTitle = '';
   switch (subject) {
-      case 'mathematics': subjectTitle = 'Matemática'; break;
-      case 'portuguese': subjectTitle = 'Português'; break;
-      case 'english': subjectTitle = 'Inglês'; break;
+      case 'mathematics': subjectTitle = 'Mathematics'; break;
+      case 'portuguese': subjectTitle = 'Portuguese'; break;
+      case 'english': subjectTitle = 'English'; break;
   }
+  
+  // Translating Difficulty Display only
+  let diffDisplay: string = difficulty;
+  if(difficulty === 'Fichinha') diffDisplay = 'Easy';
+  if(difficulty === 'Eu me Viro') diffDisplay = 'Medium';
+  if(difficulty === 'Desafiador') diffDisplay = 'Hard';
 
   const renderContent = () => {
     if (isLoading) {
       return <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500 mx-auto"></div>;
     }
     if (questionPool.length === 0) {
-      return <p className="text-xl text-gray-600">Ops! Não encontramos questões para os tópicos e dificuldade selecionados. Tente outra combinação.</p>;
+      return <p className="text-xl text-gray-600">Ops! No questions found for this topic/difficulty.</p>;
     }
     if (!problem) {
-      return <p className="text-xl text-gray-600">Carregando...</p>;
+      return <p className="text-xl text-gray-600">Loading...</p>;
     }
     return (
       <>
@@ -130,9 +147,9 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
   return (
     <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 w-full max-w-2xl mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-teal-600">{subjectTitle} - <span className="text-gray-600">{difficulty}</span></h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-teal-600">{subjectTitle} - <span className="text-gray-600">{diffDisplay}</span></h2>
         <button onClick={onBackToMenu} className="text-sm text-gray-600 hover:text-teal-500 transition-colors">
-          &larr; Voltar
+          &larr; Back
         </button>
       </div>
 
@@ -140,7 +157,10 @@ const GameScreen: React.FC<GameScreenProps> = ({ topics, difficulty, subject, qu
         <div className="w-full bg-gray-200 rounded-full h-2.5">
           <div className="bg-teal-500 h-2.5 rounded-full transition-all duration-500" style={{ width: `${((currentQuestionIndex) / questionPool.length) * 100}%` }}></div>
         </div>
-        <p className="text-center text-sm text-gray-600 mt-2">Questão: {currentQuestionIndex + 1} / {questionPool.length}</p>
+        <p className="text-center text-sm text-gray-600 mt-2">Question: {currentQuestionIndex + 1} / {questionPool.length}</p>
+        <p className="text-center text-xs text-gray-400">
+            {difficulty === 'Desafiador' ? 'Warning: Wrong answers deduct points!' : 'Good luck!'}
+        </p>
       </div>
 
       {renderContent()}

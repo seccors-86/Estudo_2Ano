@@ -22,17 +22,23 @@ interface TopicSelectionScreenProps {
   onStartGame: (topics: string[], difficulty: Difficulty, questionCount: number) => void;
   onBack: () => void;
   onNavigateToStore: () => void;
+  isAdminMoney?: boolean;
 }
 
 const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
-  characterType, purchasedUpgrades, activeUpgrades, activeTattoo, subject, points, hasMiniPet, miniPetCount, onStartGame, onBack, onNavigateToStore
+  characterType, purchasedUpgrades, activeUpgrades, activeTattoo, subject, points, hasMiniPet, miniPetCount, onStartGame, onBack, onNavigateToStore, isAdminMoney
 }) => {
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null);
   const [selectedQuestionCount, setSelectedQuestionCount] = useState<number | null>(null);
 
   const currentTopics = TOPIC_DATA[subject];
-  const subjectTitle = subject === 'mathematics' ? "Matemática" : "Português";
+  let subjectTitle = '';
+  switch(subject) {
+      case 'mathematics': subjectTitle = 'Mathematics'; break;
+      case 'portuguese': subjectTitle = 'Portuguese'; break;
+      case 'english': subjectTitle = 'English'; break;
+  }
 
   const handleTopicToggle = (topicId: string) => {
     setSelectedTopics(prev => {
@@ -63,15 +69,24 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
     }
   };
 
+  const getDifficultyLabel = (diff: Difficulty) => {
+      switch(diff) {
+          case 'Fichinha': return 'Easy Peasy';
+          case 'Eu me Viro': return 'I got this';
+          case 'Desafiador': return 'Challenger';
+          default: return diff;
+      }
+  };
+
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 text-center animate-fade-in">
       <div className="flex justify-between items-center mb-4">
          <button onClick={onBack} className="text-sm text-gray-600 hover:text-teal-500 transition-colors">
-          &larr; Trocar Matéria
+          &larr; Change Subject
         </button>
         <button onClick={onNavigateToStore} className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-2 px-4 rounded-lg shadow-md transition-transform transform hover:scale-105">
           <StoreIcon className="w-5 h-5" />
-          Loja
+          Shop
         </button>
       </div>
 
@@ -85,17 +100,17 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
                 <Character type={characterType} activeUpgrades={activeUpgrades} activeTattoo={activeTattoo} hasMiniPet={hasMiniPet} miniPetCount={miniPetCount} />
             </div>
          </div>
-         <div className="inline-block bg-gray-200 text-gray-800 text-lg font-bold px-4 py-1 rounded-full">
-            Pontos: {Math.floor(points)}
+         <div className={`inline-block text-lg font-bold px-4 py-1 rounded-full ${isAdminMoney ? 'bg-purple-100 text-purple-800 border border-purple-300' : 'bg-gray-200 text-gray-800'}`}>
+            Points: {isAdminMoney ? 'ADMIN' : Math.floor(points)}
          </div>
       </div>
 
       {/* Topic Selection */}
       <div className="mt-8 text-left">
           <div className="flex justify-between items-center mb-3">
-            <h2 className="text-2xl font-semibold text-gray-700">1. Escolha os Tópicos:</h2>
+            <h2 className="text-2xl font-semibold text-gray-700">1. Choose Topics:</h2>
             <button onClick={handleSelectAll} className="text-sm font-semibold text-teal-600 hover:text-teal-800">
-                {selectedTopics.size === currentTopics.length ? 'Limpar Seleção' : 'Selecionar Todos'}
+                {selectedTopics.size === currentTopics.length ? 'Clear Selection' : 'Select All'}
             </button>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -113,7 +128,7 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
 
       {/* Difficulty Selection */}
       <div className="mt-6 text-left">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-3">2. Escolha a Dificuldade:</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-3">2. Choose Difficulty:</h2>
           <div className="grid grid-cols-3 gap-4">
               {DIFFICULTIES.map(diff => (
                   <button
@@ -121,7 +136,7 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
                     onClick={() => setSelectedDifficulty(diff)}
                     className={`p-4 rounded-lg font-bold border-2 transition-all duration-200 ${selectedDifficulty === diff ? 'bg-yellow-400 border-yellow-500 text-yellow-900 ring-2 ring-yellow-300' : 'bg-gray-100 border-gray-200 hover:border-yellow-400'}`}
                   >
-                      {diff}
+                      {getDifficultyLabel(diff)}
                   </button>
               ))}
           </div>
@@ -129,7 +144,7 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
 
       {/* Question Count Selection */}
       <div className="mt-6 text-left mb-8">
-          <h2 className="text-2xl font-semibold text-gray-700 mb-3">3. Quantidade de Questões:</h2>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-3">3. Question Count:</h2>
           <div className="grid grid-cols-3 gap-4">
               {QUESTION_COUNTS.map(count => (
                   <button
@@ -150,7 +165,7 @@ const TopicSelectionScreen: React.FC<TopicSelectionScreenProps> = ({
         disabled={!canStart}
         className="w-full max-w-md mx-auto bg-green-500 text-white font-bold py-4 px-4 rounded-lg text-xl hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-transform transform active:scale-95 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none"
       >
-        Começar Desafio!
+        Start Challenge!
       </button>
 
     </div>

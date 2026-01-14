@@ -22,6 +22,6 @@ export const TOPIC_DATA: { [key in Subject]: Topic[] } = {
   english: [
     { id: 'basic_vocabulary', label: 'Vocabulário Básico' },
     { id: 'colors_numbers', label: 'Cores e Números' },
-    { id: 'animals_nature', label: 'Animais e Natureza' },
+    // Removed 'animals_nature' (Science/Biology)
   ]
 };

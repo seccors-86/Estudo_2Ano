@@ -1,5 +1,7 @@
-import { QUESTION_BANK } from '../data/questions';
+
+import { QUESTION_BANK, Question } from '../data/questions';
 import type { Problem, Subject, Difficulty } from '../types';
+import { adminStorage } from './storageService';
 
 // Helper para embaralhar um array
 const shuffleArray = (array: any[]) => {
@@ -11,12 +13,24 @@ const shuffleArray = (array: any[]) => {
 };
 
 export const getQuestions = (topics: string[], difficulty: Difficulty, subject: Subject, count: number): Problem[] => {
-  const subjectBank = QUESTION_BANK[subject];
-  if (!subjectBank) {
-    return [];
-  }
+  // 1. Get hardcoded questions
+  const subjectBank = QUESTION_BANK[subject] || [];
+  
+  // 2. Get Custom Admin Questions
+  const customQuestions = adminStorage.getCustomQuestions();
+  
+  // Filter custom questions that match the criteria (assuming custom questions store topic/subject/difficulty)
+  // We need to map the stored format to the logic here.
+  // The generic 'Problem' interface in types might need 'topic', 'difficulty' fields to be filterable.
+  const relevantCustomQuestions = customQuestions.filter(q => 
+      // Very basic matching, assuming admin puts correct topic IDs
+      (q as any).difficulty === difficulty && topics.includes((q as any).topic)
+  );
 
-  const filteredQuestions = subjectBank.filter(q => 
+  // Merge
+  const allQuestions = [...subjectBank, ...relevantCustomQuestions];
+
+  const filteredQuestions = allQuestions.filter(q => 
     q.difficulty === difficulty && topics.includes(q.topic)
   );
   

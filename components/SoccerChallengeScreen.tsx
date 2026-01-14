@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { getQuestions } from '../services/questionService';
 import { TOPIC_DATA } from '../data/topics';
@@ -96,8 +97,8 @@ const SoccerChallengeScreen: React.FC<SoccerChallengeScreenProps> = ({ onCorrect
 
   return (
     <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 w-full max-w-2xl mx-auto animate-fade-in-up">
-      <h2 className="text-2xl sm:text-3xl font-bold text-teal-600 mb-2 text-center">Desafio de Entrada!</h2>
-      <p className="text-gray-600 mb-6 text-center">Acerte a questão para começar a partida de futebol.</p>
+      <h2 className="text-2xl sm:text-3xl font-bold text-teal-600 mb-2 text-center">Entry Challenge!</h2>
+      <p className="text-gray-600 mb-6 text-center">Answer correctly to start the soccer match.</p>
       {renderContent()}
     </div>
   );
